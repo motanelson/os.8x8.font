@@ -113,6 +113,21 @@ module fundo() {
     translate([-largura_estrutura+largura_estrutura*0.9, diametro_lente*0.38, -profundidade_caixa])
     cube([distancia_entre_lentes+diametro_lente+(largura_estrutura*2),diametro_lente*0.35,  espessura_fundo],center=true);
 }
+module ffundoss() {
+color("Yellow")
+    // Borda down
+     
+    translate([-(distancia_entre_lentes+diametro_lente+(largura_estrutura))/2, diametro_lente/2, -(profundidade_caixa)])
+    cube([distancia_entre_lentes+diametro_lente+(largura_estrutura),espessura_fundo , profundidade_caixa]);
+
+
+
+
+
+    translate([-diametro_lente/4, diametro_lente/2, -diametro_lente/2])
+    cube([diametro_lente/2,espessura_fundo , diametro_lente/2]);
+    
+}
 module bordas() {
     color("Yellow")
     // Borda 1
@@ -124,19 +139,10 @@ module bordas() {
     translate([(distancia_entre_lentes+diametro_lente+largura_estrutura)/2, -diametro_lente/2, -(profundidade_caixa)])
      
     cube([espessura_fundo, diametro_lente, profundidade_caixa]);
-   color("Yellow")
-    // Borda fundo
-    translate([(distancia_entre_lentes+diametro_lente+largura_estrutura)/2, -diametro_lente/2, -(profundidade_caixa)])
-    cube([espessura_fundo, diametro_lente, profundidade_caixa]);
-    color("Yellow")
-    // Borda top
+   
+      // Borda top
     translate([-(distancia_entre_lentes+diametro_lente+(largura_estrutura))/2, -diametro_lente/2, -(profundidade_caixa)+profundidade_tele])
     cube([distancia_entre_lentes+diametro_lente+(largura_estrutura),espessura_fundo , profundidade_caixa-profundidade_tele]);
-
-    color("Yellow")
-    // Borda down
-    translate([-(distancia_entre_lentes+diametro_lente+(largura_estrutura))/2, diametro_lente/2, -(profundidade_caixa)])
-    cube([distancia_entre_lentes+diametro_lente+(largura_estrutura),espessura_fundo , profundidade_caixa]);
 }
 // ========== MONTAGEM FINAL ==========
 union() {
@@ -161,6 +167,10 @@ union() {
 }
 fundo();
 bordas();
+union(){
+       ffundoss();
+   }
+
 // ========== VISUALIZAÇÃO DAS LENTES ==========
 // Lente esquerda (visualização)
 /*
